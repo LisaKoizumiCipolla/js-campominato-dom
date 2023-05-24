@@ -20,6 +20,7 @@ button.addEventListener('click', function () {
     gridElement.innerHTML = "" ;
     gridElement.classList.add("grid");
 
+    const bombs = getRandomNumberList();
 
     // populate all 100 slots in grid and add effect on click
     for (let i = 1 ; i <= 100 ; i++){
@@ -30,6 +31,10 @@ button.addEventListener('click', function () {
         newCell.addEventListener ("click", function() {
             newCell.classList.toggle("selected");
             console.log(number);
+
+            if (bombs.includes(i)){
+                newCell.classList.add("explode");
+            }
         }); 
         
         gridElement.appendChild(newCell);
@@ -42,5 +47,29 @@ button.addEventListener('click', function () {
 
         return cellElement;
     }
+
+
+    
+    function getRandomNumberList(){
+        const numberList = [];
+
+        while (numberList.length < 16){
+            const randomNumber = getRandomNumber(1,100);
+            if (!numberList.includes(randomNumber)){
+                numberList.push(randomNumber);
+            }
+        }
+
+        return numberList;
+    }
+
+    console.log(getRandomNumberList());
+
+    function getRandomNumber (minNumber, maxNumber){
+        const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+        return parseInt(randomNumber);
+
+}
+
 
 });

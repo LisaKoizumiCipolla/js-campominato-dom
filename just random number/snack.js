@@ -8,11 +8,13 @@ function getRandomNumberList(){
             numberList.push(randomNumber);
         }
     }
+
+    return numberList;
 }
 
 console.log(getRandomNumberList());
 
-function getRandomNumber (maxNumber, minNumber){
+function getRandomNumber (minNumber, maxNumber){
     const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
     return randomNumber;
 
