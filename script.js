@@ -39,7 +39,7 @@ button.addEventListener('click', function () {
             let click = 1;
             clicksNumber.push(click);
             sumClicks += click;
-
+ 
             if (bombs.includes(i)){
                 newCell.classList.add("explode");
                 alert("You died");
