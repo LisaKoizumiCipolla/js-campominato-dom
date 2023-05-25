@@ -24,25 +24,31 @@ button.addEventListener('click', function () {
     console.log(bombs);
 
     
-    const clicksNumber = [];
     let sumClicks = -1;
 
-    // populate all 100 slots in grid and add effect on click
+    // populate all 100 slots in grid
     for (let i = 1 ; i <= 100 ; i++){
         const newCell = createElement("div", "cell");
         let number = i
         newCell.innerHTML = (number);
 
+        // What happens at click
         newCell.addEventListener ("click", function() {
-            newCell.classList.add("selected");
 
-            let click = 1;
-            clicksNumber.push(click);
-            sumClicks += click;
+            if (newCell.classList.contains("selected")){
+                console.log("you already clicked here!");
+            } else {
+                newCell.classList.add("selected");
+                sumClicks++;
+                if ( sumClicks === (sumClicks - bombs.length)){
+                    alert("You Won!");
+                    gridElement.innerHTML = "" ;
+                }
+            }
  
             if (bombs.includes(i)){
                 newCell.classList.add("explode");
-                alert("You died");
+                alert("You died!");
                 console.log(`You've totalized ${sumClicks} points!`);
                 gridElement.innerHTML = "" ;
             } 
@@ -59,8 +65,6 @@ button.addEventListener('click', function () {
 
         return cellElement;
     }
-
-
     
     function getRandomNumberList(){
         const numberList = [];
@@ -74,7 +78,6 @@ button.addEventListener('click', function () {
 
         return numberList;
     }
-
 
     function getRandomNumber (minNumber, maxNumber){
         const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
